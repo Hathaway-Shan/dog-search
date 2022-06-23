@@ -14,7 +14,7 @@ export default function createFilter(form, { handleFilter }) {
 
     return ({ breed, age }) => {
         // *** set the values of the select and input
-        input.value = breed;
-        select.input = age;
+        input.value = age;
+        select.input = breed;
     };
 }

@@ -43,16 +43,31 @@ async function handlePageLoad() {
     display();
 }
 
-function handleFilter(filter) {
+function handleFilter(filter, age) {
     const params = new URLSearchParams(window.location.search);
+
     // *** set breed, age, and page params based on filter
+    params.set('breed', breed);
+    params.set('age', age);
+    params.set('page', 1);
     window.location.search = params.toString();
 }
 
-function handlePaging(change, pageSize) {
+function handlePaging(change, size) {
     const params = new URLSearchParams(window.location.search);
+
     // *** set page and pageSize params based on change and PageSize
+    params.set('page', page);
+    params.set('pageSize', size);
+
     // make sure page not less than 1
+    if (size === pageSize) {
+        page = Math.max(1, page + change);
+    }
+    else {
+        page = 1;
+    }
+
     window.location.search = params.toString();
 }
 
