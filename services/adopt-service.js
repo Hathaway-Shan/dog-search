@@ -10,7 +10,7 @@ export async function getDogs(breed, age, { start, end }) {
 
     // *** add breed and age filters if they exist
     if (breed) {
-        query = query.ilike('breed', `%${breed}%`);
+        query = query.match({ breed });
     }
     if (age) {
         query = query.gte('age', age);
@@ -36,7 +36,7 @@ export async function getDog(id) {
 }
 
 // / eslint-disable-next-line no-console
-    //uhhhh what?
+//uhhhh what?
 // function checkError({ data, error }) {
 //     return error ? console.error(error) : data;
 // }

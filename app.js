@@ -47,7 +47,7 @@ function handleFilter(filter, age) {
     const params = new URLSearchParams(window.location.search);
 
     // *** set breed, age, and page params based on filter
-    params.set('breed', breed);
+    params.set('breed', filter.breed);
     params.set('age', age);
     params.set('page', 1);
     window.location.search = params.toString();
