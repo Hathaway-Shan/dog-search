@@ -9,9 +9,12 @@ export default function createFilter(form, { handleFilter }) {
         const formData = new FormData(form);
 
         // *** call handleFilter with an object that has the breed and age;
+        handleFilter(formData.get('breed'), formData.get('age'));
     });
 
     return ({ breed, age }) => {
         // *** set the values of the select and input
+        input.value = breed;
+        select.input = age;
     };
 }
