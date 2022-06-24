@@ -4,6 +4,7 @@ export default function createPetList(root) {
 
     return ({ dogs }) => {
         root.innerHTML = '';
+
         for (const dog of dogs) {
             const li = DogCard({ dog });
             root.append(li);
