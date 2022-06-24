@@ -6,18 +6,11 @@ export async function getDogs(breed, age, { start, end }) {
     let query = client
         .from('dogs')
         // *** set option to return an exact count
-        .select(`id, name, breed, age`, { count: 'exact' });
+        .select('id, name, breed');
 
     // *** add breed and age filters if they exist
-    if (breed) {
-        query = query.match({ breed });
-    }
-    if (age) {
-        query = query.gte('age', age);
-    }
 
     // *** add paging by setting a range modifier
-    query = query.range(start, end);
 
     const response = await query;
 
@@ -31,12 +24,10 @@ export async function getDog(id) {
         .match({ id: id })
         .single();
 
-    // return checkError(response);
-    return response.data;
+    return checkError(response);
 }
 
-// / eslint-disable-next-line no-console
-//uhhhh what?
-// function checkError({ data, error }) {
-//     return error ? console.error(error) : data;
-// }
+function checkError({ data, error }) {
+    // eslint-disable-next-line no-console
+    return error ? console.error(error) : data;
+}
